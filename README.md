@@ -1,33 +1,19 @@
-# ID Lock 150 PIN Manager
+# ID Lock 150 - lokal konverter
 
-Small Python desktop app that connects to MQTT, reads users 1-25 from `zigbee2mqtt/ID Lock 150`, and lets you update one PIN at a time.
+Dette er en lokal konverter for ID Lock 150 som fixer hva som er "feil" i den offisielle converteren:
+
+- Støtter ikke `user type`
+- Støtter ikke `enable / disable`
+- Støtter ikke koder som starter med 0 (null)
+- Har ikke slette-funksjon
+
 
 ## Setup
 
-1. Edit `config.yaml` with your broker host/credentials.
-2. Install dependencies:
+1. Last ned .mjs filen
+2. I din zigbee2mqtt mappe, om du ikke har den allerede, opprett en mappe som heter `external_converters`
+3. Kopier .mjs filen til `external_converters`
+4. Restart zigbee2mqtt
 
-```powershell
-python -m pip install -r requirements.txt
-```
 
-3. Run:
-
-```powershell
-python app.py
-```
-
-## Behavior
-
-- Subscribes to `zigbee2mqtt/ID Lock 150`
-- Reads user PINs by publishing to `zigbee2mqtt/ID Lock 150/get` with:
-  - `{"pin_code":{"user":1}}` ... `{"pin_code":{"user":25}}`
-- Waits 3 seconds between each publish.
-- Decodes ASCII pin data in `users.*.pin_code` and shows clear text.
-- Apply button publishes to `zigbee2mqtt/ID Lock 150/set` with:
-  - `{"pin_code":{"user":<n>,"pin_code":"<value>"}}`
-
-## Notes
-
-- If a user has no pin code, the field stays empty.
-- UI uses a dark theme.
+Enjoy!
