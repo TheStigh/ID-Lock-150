@@ -1,0 +1,6 @@
+mqtt:
+  host: "192.168.12.200"
+  port: 1883
+  username: "mqtt_thestigh"
+  password: "90Hester!"
+  client_id: "idlock150-pin-manager"
