@@ -152,7 +152,10 @@ const pincodeLockPreserveLeadingZero = {
             return;
         }
 
-        const pinCodeValue = utils.isString(pinCodeInput) ? pinCodeInput : String(pinCodeInput);
+        if (!utils.isString(pinCodeInput)) {
+            throw new Error('pin_code must be a string (e.g. "011223") to preserve leading zeros');
+        }
+        const pinCodeValue = pinCodeInput;
         const payload = {
             userid: user,
             userstatus: 1,
